@@ -1,52 +1,56 @@
 function PersonController () {
-    var input_div = document.getElementById("input_div"),
-	    save_button = input_div.getElementsByTagName("input")[8],	
-	    edit_div = document.getElementById("edit_info"),
-		edit_person_element = edit_div.getElementsByTagName("input")[0],
-		output = edit_div.getElementsByTagName("div")[0],
+
+    var	input_template = _.template($("#person_input_tmp").html()),
+	    actions = {
+		    "save": "Save"
+	        },
+			
+		person = new Person();
 		
-		person = new Person(),
-		element_input_values = {};
-		
-    save_button.addEventListener("click", setPersonInfo, false);
-    edit_person_element.addEventListener("click", editPersonInfo, false);
-    
-    function setPersonInfo () {	
-	    var elem = [],
-		    key = [],
-		    i = 0;
+	$("#main").html(input_template(actions)); 
+
+    $("#save").on("click", setPerson);
 	
-	    for (i = 0; i < input_div.getElementsByTagName("input").length - 1; i++) {
-	        elem[i] = input_div.getElementsByTagName("input")[i];
-		    key[i] = input_div.getElementsByTagName("input")[i].id;
-		    element_input_values[key[i]] = elem[i].value;
-	    }	
-	 
-	    person.setAttributes(element_input_values);
-				
-        input_div.style.display = "none";
-        edit_div.style.display = "block";
-				
+	function setPerson() {	
+	
+	    var values = {},	    
+            $inputs = $("#person_input").find("input"),
+			key = [];
+			
+	    _.each($inputs, function(input, i) {
+		    key[i] = input.id;
+			values[key[i]] = input.value;
+		});	
+      
+	    person.setAttributes(values);
 	    showPerson();
     }
 	
 	function showPerson () {
-        var key, p_elem;
-		
-		for (key in person.toJSON()) {
-		    p_elem = document.createElement("p"); 		
-			p_elem.innerText = key + ":" + person.toJSON()[key] + " ";
-			output.appendChild(p_elem);
-		}
+	
+		var $output_div = $("#person_output_tmp").html(),
+		    edit_template = _.template($output_div),
+			actions = {},
+			actions = person.toJSON();
+			
+	    actions.edit = "Edit";
+			
+	    $("#main").html();
+			
+	    $("#main").html(edit_template(actions));
+				
+		$("#edit").on("click", editPersonInfo);	   
     }		
 	
 	function editPersonInfo () {
-	    person.setAttributes(element_input_values);
-		
-	    output.innerHTML = "";	
-		
-        input_div.style.display = "block";
-        edit_div.style.display = "none";
+	
+	    var input_template = _.template($("#person_input_tmp").html()),
+	        actions = {
+		        "save": "Save"
+	            };	
+	
+	    $("#main").html(input_template(actions));  
+	    $("#save").on("click", setPerson);
     }	
 	
     return this;	

@@ -4,17 +4,9 @@ div {
     width: 200px;
 }
 
-.large {
-    height: 300px;
+#person_output {
+    height: 500px;
     width:250px;
-}
-
-#input_info {
-    display: block;
-}
-
-#edit_info  {
-    display: none;
 }
 
 input {
@@ -51,5 +43,7 @@ input {
           user-select: none;
 }
 
-
-} 
+.hide {
+display: none;
+}
+ 

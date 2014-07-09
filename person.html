@@ -3,28 +3,48 @@
     <head>
 	    <title>Person's Info</title>
 		<link rel = "stylesheet" type="text/css" href = "person-style.css" />
+		<script type = "text/javascript" src = "jquery-2.1.1.min.js"></script>
+		<script type = "text/javascript" src = "underscore.js"></script>
 	    <script type = "text/javascript" src = "person-model.js"> </script>
 		<script type = "text/javascript" src = "person-controller.js"> </script>
 		<script type = "text/javascript" src = "main.js"> </script>
 		
+		<script id = "person_input_tmp" type = "text/html">
+		    <div id = "person_input">
+                <input id = "name" type = "text" placeholder = "Name" />
+			    <input id = "middlename" type = "text" placeholder = "Middle-name" />
+		        <input id = "surname" type = "text" placeholder = "Surname" />
+			    <input id = "gender" type = "text" placeholder = "Gender" />
+			    <input id = "age" type = "text" placeholder = "Age"  />
+			    <input id = "phone" type = "text" placeholder = "Phone"  />
+                <input id = "email" type = "text" placeholder = "Email" />
+                <input id = "skype" type = "text" placeholder = "Skype" />         
+            
+                 <button id = "save">
+				       <%= save %>
+					</button>  
+			</div>	
+		</script>	
+		
+		<script id = "person_output_tmp" type = "text/html">
+		    <div id = "person_output">
+                <p>Name: <%- name %></p>
+				<p>Middle-name: <%- middlename %></p>
+		        <p>Surname: <%- surname %></p>
+			    <p>Gender: <%- gender %></p>
+			    <p>Age: <%- age %></p>
+			    <p>Phone: <%- phone %></p>
+                <p>Email: <%- email %></p>
+                <p>Skype: <%- skype %></p>     
+            
+                <button id = "edit">
+				    <%= edit %>
+			    </button>  
+			</div>	
+		</script>	
     </head>
     <body>
-	    <div id = "input_div">
-            <input id = "Name" placeholder = "Name" />
-			<input id = "Middle-name" placeholder = "Middle-name" />
-		    <input id = "Surname" placeholder = "Surname" />
-			<input id = "Gender" placeholder = "Gender" />
-			<input id = "Age" placeholder = "Age" />
-			<input id = "Phone" placeholder = "Phone" />
-            <input id = "Email" placeholder = "Email" />
-            <input id = "Skype" placeholder = "Skype" />         
-            
-            <input type = "button" id = "save" value = "Save" />
-		</div>
-		
-		<div id = "edit_info">
-            <div id = "output" class = "large"></div>
-		    <input type = "button" id = "edit" value = "Edit" />
+	    <div id = "main">
 		</div>
     </body>
 </html>
